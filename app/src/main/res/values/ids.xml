@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="txtToDoDate" type="id" />
+    <item name="txtToDoTime" type="id" />
+    <item name="txtToDoDetails" type="id" />
+    <item name="txtfiles_recyclerview" type="id" />
+</resources>

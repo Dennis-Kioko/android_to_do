@@ -9,6 +9,10 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
@@ -18,6 +22,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.dennis.todoapp.databinding.ActivityToDoBinding;
+import com.google.android.material.tabs.TabLayout;
 
 public class ToDoActivity extends AppCompatActivity {
 
@@ -28,6 +33,11 @@ public class ToDoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_to_do);
+
+
+
+
+
 
         Toolbar toolbar = findViewById(R.id.toolbar);
 

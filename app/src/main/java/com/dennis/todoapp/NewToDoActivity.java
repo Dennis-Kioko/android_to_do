@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.dennis.todoapp.models.Note;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -39,16 +40,23 @@ public class NewToDoActivity extends AppCompatActivity {
 
         TextInputEditText editSubtasks = findViewById(R.id.editSubtasks);
 
+        Note newNote= new Note();
+
+
+
+
         btnCreateTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String Title = editTitle.getText().toString();
-                String Details = editDetails.getText().toString();
+                newNote.setTittle(editTitle.getText().toString());
+                newNote.setDescription(editDetails.getText().toString());
 
-                Toast.makeText(NewToDoActivity.this,Title, Toast.LENGTH_SHORT).show();
 
-                Snackbar.make(v, Details, Snackbar.LENGTH_LONG).show();
+
+                Toast.makeText(NewToDoActivity.this,newNote.getTittle(), Toast.LENGTH_SHORT).show();
+
+                Snackbar.make(v, newNote.getDescription(), Snackbar.LENGTH_LONG).show();
             }
         });
 

@@ -14,8 +14,11 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="text"
+            android:imeOptions="actionSearch"
             android:layout_margin="16dp"
             android:hint="Search To Do or Notes" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -156,31 +159,46 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="8dp"
+        android:fadeScrollbars="true"
+        android:scrollbarFadeDuration="2000"
+        android:scrollbarThumbVertical="@color/black"
+        android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView12"
-        android:scrollbars="none">
+        app:layout_constraintVertical_bias="1.0">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <include layout="@layout/single_to_do"
-                android:id="@+id/card_single"/>
-            <include layout="@layout/single_to_do"/>
-            <include layout="@layout/single_to_do"/>
-            <include layout="@layout/single_to_do"/>
-            <include layout="@layout/single_to_do"/>
-            <include layout="@layout/single_to_do"/>
+            <include
+                android:id="@+id/card_single"
+                layout="@layout/single_to_do" />
+
+            <include layout="@layout/single_to_do" />
+
+            <include layout="@layout/single_to_do" />
+
+            <include layout="@layout/single_to_do" />
+
+            <include layout="@layout/single_to_do" />
+
+            <include layout="@layout/single_to_do" />
+
+            <include layout="@layout/single_to_do" />
+
+            <include layout="@layout/single_to_do" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
 
     </ScrollView>
 
 
-<!--    <androidx.recyclerview.widget.RecyclerView-->
+    <!--    <androidx.recyclerview.widget.RecyclerView-->
 <!--        android:layout_width="409dp"-->
 <!--        android:layout_height="354dp"-->
 <!--        android:layout_margin="8dp"-->

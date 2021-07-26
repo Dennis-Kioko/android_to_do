@@ -17,6 +17,8 @@ import android.widget.TextView;
 
 public class ToDoDetailActivity extends AppCompatActivity {
 
+    CollapsingToolbarLayout toolBarLayout;
+    TextView txtToDoDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,18 +28,19 @@ public class ToDoDetailActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        CollapsingToolbarLayout toolBarLayout = findViewById(R.id.toolbar_layout);
+        toolBarLayout = findViewById(R.id.toolbar_layout);
         toolBarLayout.setTitle(getTitle());
 
         TextView txtToDoTime = findViewById(R.id.txtToDoTime);
 
         TextView txtToDoDate = findViewById(R.id.txtToDoDate);
 
-        TextView txtToDoDetails = findViewById(R.id.txtToDoDetails);
+        txtToDoDetails = findViewById(R.id.ToDoDetails);
 
         Button btnDelete = findViewById(R.id.btnDelete);
 
         Button btnComplete = findViewById(R.id.btnComplete);
+
 
       btnComplete.setOnClickListener(new View.OnClickListener() {
           @Override
@@ -56,5 +59,21 @@ public class ToDoDetailActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (getIntent().hasExtra("TITLE")){
+            toolBarLayout.setTitle(getIntent().getStringExtra("TITLE"));
+
+
+            if (getIntent().hasExtra("DETAILS")){
+                txtToDoDetails.setText(getIntent().getStringExtra("DETAILS"));
+
+            }
+
+        }
     }
 }

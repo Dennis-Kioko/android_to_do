@@ -4,4 +4,5 @@
     <item name="txtToDoTime" type="id" />
     <item name="txtToDoDetails" type="id" />
     <item name="txtfiles_recyclerview" type="id" />
+    <item name="inputSearch" type="id" />
 </resources>

@@ -1,5 +1,6 @@
  package com.dennis.todoapp;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -7,7 +8,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+import com.dennis.todoapp.Settings.SharedPrefConfig;
+import com.dennis.todoapp.auth.ui.login.LoginActivity;
+
+ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,13 +24,27 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(MainActivity.this, ToDoActivity.class);
-                startActivity(intent);
+
+                SharedPrefConfig myPreferenceStorage = new SharedPrefConfig(getApplicationContext());
+
+                if (myPreferenceStorage.isLoggedIn()){
+
+
+                    Intent intent = new Intent(MainActivity.this, ToDoActivity.class);
+                    startActivity(intent);
+                }
+
+                else{
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
+
+
 
             }
         });
 
-
-
     }
-}
+
+
+ }

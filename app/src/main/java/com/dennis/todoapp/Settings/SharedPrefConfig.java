@@ -11,11 +11,11 @@ public class SharedPrefConfig {
     private static final  String LOGIN_STATUS = "com.dennis.todoapp.Settings.login";
 
 
-
     public SharedPrefConfig(Context context) {
         this.context = context;
         sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-    }
+
+        }
 
 
     public void setLoggingInStatus(boolean status){

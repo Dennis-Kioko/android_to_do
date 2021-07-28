@@ -1,5 +1,9 @@
 package com.dennis.todoapp.auth.data;
 
+import com.dennis.todoapp.R;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+
 /**
  * A generic class that holds a result success w/ data or an error exception.
  */
@@ -10,6 +14,7 @@ public class Result<T> {
 
     @Override
     public String toString() {
+
         if (this instanceof Result.Success) {
             Result.Success success = (Result.Success) this;
             return "Success[data=" + success.getData().toString() + "]";
@@ -45,4 +50,6 @@ public class Result<T> {
             return this.error;
         }
     }
+
+
 }

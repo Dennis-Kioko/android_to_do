@@ -39,8 +39,6 @@ import com.dennis.todoapp.auth.ui.login.LoginActivity;
                     startActivity(intent);
                 }
 
-
-
             }
         });
 

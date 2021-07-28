@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.dennis.todoapp.R;
 import com.dennis.todoapp.Settings.SharedPrefConfig;
 import com.dennis.todoapp.ToDoActivity;
+import com.dennis.todoapp.auth.RegisterActivity;
 import com.dennis.todoapp.auth.ui.login.LoginViewModel;
 import com.dennis.todoapp.auth.ui.login.LoginViewModelFactory;
 import com.dennis.todoapp.databinding.ActivityLoginBinding;
@@ -50,6 +51,15 @@ public class LoginActivity extends AppCompatActivity {
         final EditText passwordEditText = binding.password;
         final Button loginButton = binding.login;
         final ProgressBar loadingProgressBar = binding.loading;
+        final Button registerButton = binding.btnRegister;
+
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override
@@ -104,6 +114,8 @@ public class LoginActivity extends AppCompatActivity {
                         passwordEditText.getText().toString());
             }
         };
+
+
         usernameEditText.addTextChangedListener(afterTextChangedListener);
         passwordEditText.addTextChangedListener(afterTextChangedListener);
         passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {

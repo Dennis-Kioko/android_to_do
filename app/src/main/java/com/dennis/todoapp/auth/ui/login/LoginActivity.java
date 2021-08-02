@@ -134,10 +134,37 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 loadingProgressBar.setVisibility(View.VISIBLE);
-                loginViewModel.login(usernameEditText.getText().toString(),
+
+                byPassTemplateLogin(usernameEditText.getText().toString(),
                         passwordEditText.getText().toString());
+//
+//                loginViewModel.login(usernameEditText.getText().toString(),
+//                        passwordEditText.getText().toString());
             }
         });
+    }
+
+    private void byPassTemplateLogin(String username, String password) {
+
+        SharedPrefConfig myPreferenceStorage = new SharedPrefConfig(getApplicationContext());
+        myPreferenceStorage.setLoggingInStatus(true);
+
+
+        if (myPreferenceStorage.authenticate(username, password)){
+            myPreferenceStorage.setLoggingInStatus(true);
+
+            Intent intent = new Intent(getApplicationContext(), ToDoActivity.class );
+            startActivity(intent);
+            Toast.makeText(getApplicationContext(), "", Toast.LENGTH_LONG).show();
+
+        }
+
+
+
+        else{
+            Toast.makeText(this, "Wrong credentials", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     private void updateUiWithUser(LoggedInUserView model) {

@@ -66,8 +66,19 @@ public class RegisterActivity extends AppCompatActivity {
         number = txtPhoneNumber.getText().toString().trim();
         email = txtEmail.getText().toString().trim();
 
+        /**
+         * code to add user detail shared preferences
+         */
+
+
         SharedPrefConfig sharedPrefConfig = new SharedPrefConfig(RegisterActivity.this);
         sharedPrefConfig.setUserInfo(name, email, number, password );
+
+
+        //Mark the user as logged in
+
+        sharedPrefConfig.setLoggingInStatus(true);
+
 
         Toast.makeText(this, "User"+" "+ name+" "+ "registered successfully.", Toast.LENGTH_SHORT).show();
 

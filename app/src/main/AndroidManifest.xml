@@ -3,6 +3,7 @@
     package="com.dennis.todoapp">
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -10,18 +11,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ToDoApp">
         <activity android:name=".auth.RegisterActivity"></activity>
+
         <activity
             android:name=".auth.ui.login.LoginActivity"
-            android:label="@string/title_activity_login" />
+            android:label="login" />
         <activity android:name=".NewToDoActivity" />
+
         <activity
             android:name=".ToDoDetailActivity"
-            android:label="@string/title_activity_to_do_detail"
+            android:label="Your Task Detail"
             android:theme="@style/Theme.ToDoApp.NoActionBar" />
+
         <activity
             android:name=".ToDoActivity"
-            android:label="@string/title_activity_to_do"
+            android:label="Do Stuff Today"
             android:theme="@style/Theme.ToDoApp.NoActionBar" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,6 +34,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

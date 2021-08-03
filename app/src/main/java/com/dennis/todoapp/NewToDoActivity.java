@@ -15,14 +15,20 @@ import com.dennis.todoapp.models.Note;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 
+import io.objectbox.Box;
+
 public class NewToDoActivity extends AppCompatActivity {
 
 
     TextInputEditText editTitle;
+    private Box<Note> noteBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        noteBox = ObjectBox.get().boxFor(Note.class);
+
 
         setContentView(R.layout.activity_new_to_do);
 
@@ -56,7 +62,8 @@ public class NewToDoActivity extends AppCompatActivity {
 
                 newNote.setTittle(editTitle.getText().toString());
                 newNote.setDescription(editDetails.getText().toString());
-                newNote.setId(1);
+
+                noteBox.put(newNote);  // creates a new note in the database
 
 
                 Intent intent = new Intent(NewToDoActivity.this, ToDoDetailActivity.class);

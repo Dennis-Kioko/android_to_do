@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.dennis.todoapp.Settings.SharedPrefConfig;
+import com.dennis.todoapp.models.Note;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -32,10 +33,13 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import io.objectbox.Box;
+
 public class ToDoActivity extends AppCompatActivity {
 
 
     int numberOfSearches = 0;
+    private Box<Note> noteBox;
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityToDoBinding binding;
@@ -46,7 +50,9 @@ public class ToDoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_to_do);
 
+        noteBox = ObjectBox.get().boxFor(Note.class);
 
+        Toast.makeText(this, "You have " +noteBox.count() + " To dos.", Toast.LENGTH_SHORT).show();
 
 
         TextInputEditText inputSearch = findViewById(R.id.inputSearch);

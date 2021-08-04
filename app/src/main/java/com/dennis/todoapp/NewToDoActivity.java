@@ -63,12 +63,12 @@ public class NewToDoActivity extends AppCompatActivity {
                 newNote.setTittle(editTitle.getText().toString());
                 newNote.setDescription(editDetails.getText().toString());
 
-                noteBox.put(newNote);  // creates a new note in the database
+                long id = noteBox.put(newNote);  // creates a new note in the database
 
 
                 Intent intent = new Intent(NewToDoActivity.this, ToDoDetailActivity.class);
-                intent.putExtra("TITLE", newNote.getTittle());
-                intent.putExtra("DETAILS", newNote.getDescription());
+                intent.putExtra("ID", id);
+
                 startActivity(intent);
 
 

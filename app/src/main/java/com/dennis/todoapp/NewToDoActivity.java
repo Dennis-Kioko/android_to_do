@@ -15,6 +15,8 @@ import com.dennis.todoapp.models.Note;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.Date;
+
 import io.objectbox.Box;
 
 public class NewToDoActivity extends AppCompatActivity {
@@ -22,6 +24,9 @@ public class NewToDoActivity extends AppCompatActivity {
 
     TextInputEditText editTitle;
     private Box<Note> noteBox;
+    TextInputEditText editDetails, editSubtasks;
+    Note newNote;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,13 +52,22 @@ public class NewToDoActivity extends AppCompatActivity {
 
         editTitle = findViewById(R.id.editTitle);
 
-        TextInputEditText editDetails = findViewById(R.id.editDetails);
+        editDetails = findViewById(R.id.editDetails);
 
-        TextInputEditText editSubtasks = findViewById(R.id.editSubtasks);
+        editSubtasks = findViewById(R.id.editSubtasks);
 
 
-        Note newNote= new Note();
 
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+                finish();
+
+
+            }
+        });
 
 
         btnCreateTask.setOnClickListener(new View.OnClickListener() {
@@ -72,26 +86,42 @@ public class NewToDoActivity extends AppCompatActivity {
                 startActivity(intent);
 
 
-
-
-
             }
+
+
         });
-
-
-
 
 
     }
 
     @Override
-    protected void onStart() { super.onStart();
+    protected void onStart() {
+        super.onStart();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+
+        if (getIntent().hasExtra("ID")) {
+
+            newNote = noteBox.get(getIntent().getLongExtra("ID", 0));
+
+            editTitle.setText(newNote.getTittle());
+            editDetails.setText(newNote.getDescription());
+            newNote.setUpdated_at(new Date().toString());
+
+        }
+
+        else {
+            newNote = new Note();
+            newNote.setCreated_at(new Date().toString());
+            newNote.setUpdated_at(new Date().toString());
+        }
+
     }
+
+
 
     @Override
     protected void onPause() {

@@ -1,5 +1,6 @@
 package com.dennis.todoapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -10,6 +11,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.snackbar.SnackbarContentLayout;
 import com.google.android.material.tabs.TabLayout;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -71,19 +73,9 @@ public class ToDoDetailActivity extends AppCompatActivity {
           public void onClick(View v) {
               //ToDO: Add alert to ask user if he/she really wants to delete this
 
-              if (idToUse == 0){
-                  Toast.makeText(ToDoDetailActivity.this, "No Todo Selected", Toast.LENGTH_SHORT).show();
+              alertUser();
 
 
-              }
-
-              else{
-                  noteBox.remove(idToUse);
-                  Snackbar.make(v,"Todo deleted successfully", Snackbar.LENGTH_SHORT).show();
-                  Intent intent = new Intent(ToDoDetailActivity.this, ToDoActivity.class);
-                  startActivity(intent);
-                  finish();
-              }
 
 
 
@@ -96,8 +88,17 @@ public class ToDoDetailActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+                if(idToUse ==0){
+                    Toast.makeText(ToDoDetailActivity.this, "Nothing to edit", Toast.LENGTH_SHORT).show();
+                }
+
+                else{
+                    Intent intent = new Intent(ToDoDetailActivity.this, NewToDoActivity.class);
+                    intent.putExtra("ID", idToUse);
+                    startActivity(intent);
+
+                }
             }
         });
     }
@@ -120,4 +121,49 @@ public class ToDoDetailActivity extends AppCompatActivity {
 
         }
     }
+
+    public void deleteTodo(){
+
+        if (idToUse == 0){
+            Toast.makeText(ToDoDetailActivity.this, "No Todo Selected", Toast.LENGTH_SHORT).show();
+
+
+        }
+
+        else{
+            noteBox.remove(idToUse);
+            Intent intent = new Intent(ToDoDetailActivity.this, ToDoActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+
+    }
+
+    public void alertUser(){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(ToDoDetailActivity.this);
+        builder.setTitle("Delete Todo"). setMessage("Are you sure you want to delete this message?");
+
+        builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                deleteTodo();
+
+            }
+        });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(ToDoDetailActivity.this, "Deleting stopped", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+
+    }
+
 }
